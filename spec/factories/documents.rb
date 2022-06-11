@@ -18,6 +18,15 @@
 #
 FactoryBot.define do
   factory :document do
-    file { nil }
+    user
+
+    trait :with_file do
+      before :create do |document|
+        file_path = Rails.root.join('spec', 'support', 'files', 'CNAB.txt')
+        file = fixture_file_upload(file_path, 'text/plain')
+
+        document.file.attach(file)
+      end
+    end
   end
 end

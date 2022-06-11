@@ -74,6 +74,8 @@ group :test do
   gem 'simplecov', require: false
   # https://github.com/rails/rails-controller-testing
   gem 'rails-controller-testing', '1.0.5'
+  # rspec-sidekiq
+  gem 'rspec-sidekiq'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

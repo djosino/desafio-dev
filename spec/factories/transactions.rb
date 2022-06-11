@@ -27,14 +27,15 @@
 #
 FactoryBot.define do
   factory :transaction do
-    document { nil }
-    transaction_type { nil }
-    date { "2022-06-11" }
-    value { 1.5 }
-    document { "MyString" }
-    credit_card { "MyString" }
-    hour { "MyString" }
-    owner { "MyString" }
-    store { "MyString" }
+    document
+    transaction_type
+
+    date { Faker::Date.in_date_period(month: 2) }
+    value { Faker::Number.decimal(l_digits: 3, r_digits: 2) }
+    document { Faker::IDNumber.brazilian_citizen_number }
+    credit_card { Faker::Number.leading_zero_number(digits: 12) }
+    hour { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :time) }
+    owner { Faker::String.random(length: 10) }
+    store { Faker::String.random(length: 10) }
   end
 end

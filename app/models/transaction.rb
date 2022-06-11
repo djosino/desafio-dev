@@ -41,6 +41,3 @@ class Transaction < ApplicationRecord
   validates :owner, presence: true, length: { maximum: 14 }
   validates :store, presence: true, length: { maximum: 19 }
 end
-
-
-
