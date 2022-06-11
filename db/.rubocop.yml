@@ -1,6 +1,5 @@
 # This is the configuration used to check the rubocop source code.
 
-inherit_from: .rubocop_todo.yml
 require:
   - rubocop/cop/internal_affairs
   - rubocop-performance
@@ -10,7 +9,6 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
-    - 'app/controllers/devise_controller.rb'
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
     - 'tmp/**/*'
@@ -37,6 +35,9 @@ Style/FormatStringToken:
   # look like unannotated format string tokens to this cop.
   Exclude:
     - spec/**/*
+
+Style/StringLiterals:
+  Enabled: false
 
 Style/IpAddresses:
   # The test for this cop includes strings that would cause offenses
@@ -68,9 +69,13 @@ Layout/HashAlignment:
     - table
 
 Layout/LineLength:
-  Max: 100
-  AllowedPatterns:
-    - !ruby/regexp /\A +(it|describe|context|shared_examples|include_examples|it_behaves_like) ["']/
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Layout/EmptyLines:
+  Enabled: false
 
 Lint/InterpolationCheck:
   Exclude:
