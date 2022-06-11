@@ -103,14 +103,15 @@ MESSAGE
   def require_no_authentication
     assert_is_devise_resource!
     return unless is_navigational_format?
+
     no_input = devise_mapping.no_input_strategies
 
     authenticated = if no_input.present?
-      args = no_input.dup.push scope: resource_name
-      warden.authenticate?(*args)
-    else
-      warden.authenticated?(resource_name)
-    end
+                      args = no_input.dup.push scope: resource_name
+                      warden.authenticate?(*args)
+                    else
+                      warden.authenticated?(resource_name)
+                    end
 
     if authenticated && resource = warden.user(resource_name)
       set_flash_message(:alert, 'already_authenticated', scope: 'devise.failure')
@@ -123,16 +124,16 @@ MESSAGE
   # and instructions were sent.
   def successfully_sent?(resource)
     notice = if Devise.paranoid
-      resource.errors.clear
-      :send_paranoid_instructions
-    elsif resource.errors.empty?
-      :send_instructions
-    end
+               resource.errors.clear
+               :send_paranoid_instructions
+             elsif resource.errors.empty?
+               :send_instructions
+             end
 
-    if notice
-      set_flash_message! :notice, notice
-      true
-    end
+    return unless notice
+
+    set_flash_message! :notice, notice
+    true
   end
 
   # Sets the flash message with :key, using I18n. By default you are able
@@ -156,23 +157,19 @@ MESSAGE
     message = find_message(kind, options)
     if options[:now]
       flash.now[key] = message if message.present?
-    else
-      flash[key] = message if message.present?
+    elsif message.present?
+      flash[key] = message
     end
   end
 
   # Sets flash message if is_flashing_format? equals true
   def set_flash_message!(key, kind, options = {})
-    if is_flashing_format?
-      set_flash_message(key, kind, options)
-    end
+    set_flash_message(key, kind, options) if is_flashing_format?
   end
 
   # Sets minimum password length to show to user
   def set_minimum_password_length
-    if devise_mapping.validatable?
-      @minimum_password_length = resource_class.password_length.min
-    end
+    @minimum_password_length = resource_class.password_length.min if devise_mapping.validatable?
   end
 
   def devise_i18n_options(options)
