@@ -1,5 +1,17 @@
+# == Schema Information
+#
+# Table name: transaction_types
+#
+#  id          :bigint           not null, primary key
+#  description :string
+#  entry       :boolean          default(FALSE)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
 require 'rails_helper'
 
 RSpec.describe TransactionType, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'associations' do
+    it { should have_many(:transactions) }
+  end
 end

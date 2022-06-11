@@ -63,3 +63,14 @@ div.actions {
 
 label {
   display: block; }
+
+table {
+  width: 100%;
+  padding: 2px 10px;
+}
+
+table tr td,
+table tr th{
+  border: 1px solid black;
+  border-collapse: collapse;
+}

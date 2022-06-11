@@ -1,20 +1,22 @@
-%h1 Listing documents
+%h1 Meus Documentos
 
 %table
   %thead
     %tr
-      %th User
-      %th
-      %th
-      %th
-
+      %th Usuário
+      %th Status
+      %th Arquivo
+      %th Data de Criação
+      %th{colspan: 99}
+        Ações
   %tbody
     - @documents.each do |document|
       %tr
-        %td= document.user
+        %td= document.user.try(:email)
+        %td= document.status
+        %td= link_to 'Download', document.file
+        %td= document.created_at
         %td= link_to 'Show', document
-        %td= link_to 'Edit', edit_document_path(document)
-        %td= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

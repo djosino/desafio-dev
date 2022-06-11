@@ -1,9 +1,23 @@
-%p#notice= notice
+%h3 Visualizar Documento ##{@document.id}
 
-%p
-  %b User:
-  = @document.user
+%table
+  %thead
+    %tr
+      %th Usuário
+      %th Status
+      %th Arquivo
+      %th Data de Criação
+  %tbody
+    %tr
+      %td= @document.user.try(:email)
+      %td= @document.status
+      %td= link_to 'Download', @document.file
+      %td=l @document.created_at, format: :short
 
-= link_to 'Edit', edit_document_path(@document)
-\|
-= link_to 'Back', documents_path
+%br
+
+= render partial: 'transactions/list', locals: { transactions: @transactions }
+
+%br
+
+= link_to 'Voltar', documents_path

@@ -7,7 +7,7 @@
           %li= message
 
   .field
-    = f.label :user
-    = f.text_field :user
+    = f.label :file
+    = f.file_field :file, direct_upload: true
   .actions
     = f.submit 'Save'

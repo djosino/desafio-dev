@@ -10,6 +10,7 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
+    - 'app/controllers/devise_controller.rb'
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'
     - 'tmp/**/*'

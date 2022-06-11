@@ -1,0 +1,23 @@
+
+%h3 Transações
+
+%table
+  %thead
+    %tr
+      %th Descrição
+      %th Data
+      %th Hora
+      %th Valor
+      %th Cartão
+      %th Dono da loja
+      %th Loja
+  %tbody
+    - transactions.each do |transaction|
+      %tr
+        %td= transaction.transaction_type.try(:description)
+        %td=l transaction.date
+        %td= transaction.decorate.hour
+        %td= number_to_currency(transaction.value)
+        %td= transaction.credit_card
+        %td= transaction.owner
+        %td= transaction.store

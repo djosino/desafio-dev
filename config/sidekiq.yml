@@ -7,3 +7,5 @@ production:
   - default
   - mailers
   - notifier
+  - active_storage_purge
+  - active_storage_analysis
