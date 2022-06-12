@@ -32,9 +32,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  # rspec
-  gem 'factory_bot_rails', '6.2.0'
-  gem 'rspec-rails', '5.0.1'
 end
 
 group :development do
@@ -76,6 +73,9 @@ group :test do
   gem 'rails-controller-testing', '1.0.5'
   # rspec-sidekiq
   gem 'rspec-sidekiq'
+  # rspec
+  gem 'rspec-rails', '5.0.1'
+  gem 'factory_bot_rails', '6.2.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
