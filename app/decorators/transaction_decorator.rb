@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# transaction decorator
 class TransactionDecorator < ApplicationDecorator
   delegate_all
 

@@ -42,8 +42,7 @@ class Transaction < ApplicationRecord
   validates :store, presence: true, length: { maximum: 19 }
 
   # scopes
-  scope :total_value, ->() {
-    joins(:transaction_type)
-      .sum('value * (CASE WHEN entry THEN 1 WHEN not entry THEN -1 END)')
+  scope :total_value, -> {
+    joins(:transaction_type).sum('value * (CASE WHEN entry THEN 1 WHEN not entry THEN -1 END)')
   }
 end

@@ -94,3 +94,6 @@ gem 'haml-rails', '~> 2.0'
 # Decorators
 # https://github.com/drapergem/draper
 gem 'draper'
+
+# https://github.com/jwt/ruby-jwt
+gem 'jwt'

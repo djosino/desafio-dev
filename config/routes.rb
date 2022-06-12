@@ -16,5 +16,11 @@ Rails.application.routes.draw do
     root 'documents#index'
   end
 
+  # API
+  namespace :api do
+    post '/auth/login', to: 'authentication#login'
+    resources :documents, only: %i[index show create]
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
