@@ -1,0 +1,38 @@
+
+%h3 Transações
+
+%br
+
+= form_tag nil, method: :get do
+  = select_tag :store, options_for_select(transactions.unscoped.distinct.pluck(:store).sort,
+                                          params[:store]),
+                       { include_blank: true }
+  = submit_tag 'Filtrar'
+
+%br
+
+%table
+  %thead
+    %tr
+      %th Descrição
+      %th Data
+      %th Hora
+      %th Valor
+      %th Cartão
+      %th Dono da loja
+      %th Loja
+  %tbody
+    - transactions.each do |transaction|
+      %tr
+        %td= transaction.transaction_type.try(:description)
+        %td=l transaction.date
+        %td= transaction.decorate.hour
+        %td= number_to_currency(transaction.value)
+        %td= transaction.credit_card
+        %td= transaction.owner
+        %td= transaction.store
+  - if params[:store].present?
+    %tfoot
+      %tr
+        %td{colspan: 3} Saldo em Conta
+        %td{colspan: 99}= number_to_currency(transactions.total_value)

@@ -33,8 +33,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # rspec
-  gem 'factory_bot_rails', '6.2.0'
   gem 'rspec-rails', '5.0.1'
+  gem 'factory_bot_rails', '6.2.0'
 end
 
 group :development do
@@ -58,6 +58,9 @@ group :development do
 end
 
 group :test do
+  gem 'net-smtp', require: false
+  # https://github.com/DatabaseCleaner/database_cleaner
+  gem 'database_cleaner-active_record'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
@@ -71,6 +74,8 @@ group :test do
   gem 'simplecov', require: false
   # https://github.com/rails/rails-controller-testing
   gem 'rails-controller-testing', '1.0.5'
+  # rspec-sidekiq
+  gem 'rspec-sidekiq'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -89,3 +94,6 @@ gem 'haml-rails', '~> 2.0'
 # Decorators
 # https://github.com/drapergem/draper
 gem 'draper'
+
+# https://github.com/jwt/ruby-jwt
+gem 'jwt'

@@ -1,0 +1,25 @@
+%h3 Visualizar Documento ##{@document.id}
+
+%br
+
+%table
+  %thead
+    %tr
+      %th Usuário
+      %th Status
+      %th Arquivo
+      %th Data de Criação
+  %tbody
+    %tr
+      %td= @document.user.try(:email)
+      %td= @document.status
+      %td= link_to 'Download', @document.file
+      %td=l @document.created_at, format: :short
+
+%br
+
+= render partial: 'transactions/list', locals: { transactions: @transactions }
+
+%br
+
+= link_to 'Voltar', documents_path
