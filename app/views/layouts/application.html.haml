@@ -8,4 +8,10 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    .container
+      .row
+        .col-12{style: 'text-align: right'}
+          = link_to 'Sair', destroy_user_session_path, method: :delete
+      .row
+        .col-12
+          = yield
