@@ -23,7 +23,8 @@ COPY Gemfile Gemfile.lock ./
 
 RUN bundle config build.nokogiri --use-system-libraries
 
-RUN bundle check || bundle install
+RUN bundle install
+RUN bundle check
 
 # We'll install the app in this directory
 WORKDIR /home/app

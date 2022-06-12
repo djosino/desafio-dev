@@ -41,7 +41,38 @@ método ou delegar o processamento para uma action
 | redis    | 6.2.2  |
 | docker   | 3.4    |
 
-### Para execução da aplicação basta configurar suas variaveis de ambiente em .dockerfiles/.env e executar 'docker-compose up'
+### Está tendo um problema ao subir os serviços no docker-compose então documentarei como subir a aplicação com RVM:
 
+RVM
+--------------------
 
+Install GPG keys
 
+    gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+Install RVM (development version):
+
+    \curl -sSL https://get.rvm.io | bash
+
+Install Redis
+    apt install redis -y
+
+Ruby 3.1.2
+--------------------
+
+    rvm install 3.1.2
+
+Gems
+--------------------
+
+    bundle install
+
+Executando projeto
+--------------------
+
+    rails s
+
+Executando sidekiq
+--------------------
+
+    sidekiq -C config/sidekiq.yml
