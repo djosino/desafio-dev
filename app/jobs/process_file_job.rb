@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Process files to Documents
 class ProcessFileJob < ApplicationJob
   queue_as :default
 
@@ -9,9 +10,10 @@ class ProcessFileJob < ApplicationJob
     process_file(document)
 
     document.processed!
-  rescue Exception => e
+  rescue StandardError => e
     document.fail!
 
+    logger.info e
     logger.info 'Invalid File'
   end
 
@@ -20,7 +22,7 @@ class ProcessFileJob < ApplicationJob
 
     ApplicationRecord.transaction do
       file.readlines.map(&:chomp).each do |line|
-        raise Exception unless line.size.eql?(80)
+        raise StandardError unless line.size.eql?(80)
 
         document.transactions.create(line_to_hash(line))
       end

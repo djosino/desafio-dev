@@ -1,6 +1,8 @@
 
 %h3 Transações
 
+%br
+
 = form_tag nil, method: :get do
   = select_tag :store, options_for_select(transactions.unscoped.distinct.pluck(:store).sort,
                                           params[:store]),

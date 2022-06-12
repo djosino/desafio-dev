@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: transaction_types
@@ -10,7 +12,7 @@
 #
 FactoryBot.define do
   factory :transaction_type do
-    description { "MyString" }
-    entry { false }
+    description { Faker::String.random(length: [6, 20]) }
+    entry { Faker::Boolean.boolean }
   end
 end

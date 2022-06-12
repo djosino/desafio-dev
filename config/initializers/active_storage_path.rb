@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# get path to attached one
 module ActiveStorage
   class Attached
     class One
