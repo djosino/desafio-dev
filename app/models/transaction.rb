@@ -40,4 +40,10 @@ class Transaction < ApplicationRecord
   validates :hour, presence: true, length: { is: 6 }
   validates :owner, presence: true, length: { maximum: 14 }
   validates :store, presence: true, length: { maximum: 19 }
+
+  # scopes
+  scope :total_value, ->() {
+    joins(:transaction_type)
+      .sum('value * (CASE WHEN entry THEN 1 WHEN not entry THEN -1 END)')
+  }
 end

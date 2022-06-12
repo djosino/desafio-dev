@@ -12,7 +12,10 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1 or /documents/1.json
   def show
-    @transactions = @document.transactions.includes(:transaction_type).order(:id)
+    @transactions = @document.transactions
+                             .where(show_params)
+                             .includes(:transaction_type)
+                             .order(:id)
   end
 
   # GET /documents/new
@@ -52,15 +55,22 @@ class DocumentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_document
-      @document = current_user.documents.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def document_params
-      params.require(:document)
-            .permit(:file)
-            .merge(user: current_user)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_document
+    @document = current_user.documents.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def document_params
+    params.require(:document)
+          .permit(:file)
+          .merge(user: current_user)
+  end
+
+  def show_params
+    return {} if params[:store].blank?
+
+    params.permit(:store)
+  end
 end

@@ -6,7 +6,6 @@ RSpec.describe TransactionDecorator do
     let(:formated) { transaction.hour.insert(4, ':').insert(2,':') }
 
     it 'formated hour' do
-
       expect(transaction.decorate.hour).to eq(formated)
     end
   end

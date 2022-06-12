@@ -32,7 +32,7 @@ FactoryBot.define do
 
     date { Faker::Date.in_date_period(month: 2) }
     value { Faker::Number.decimal(l_digits: 3, r_digits: 2) }
-    document { Faker::IDNumber.brazilian_citizen_number }
+    document_number { Faker::IDNumber.brazilian_citizen_number }
     credit_card { Faker::Number.leading_zero_number(digits: 12) }
     hour { Faker::Time.between(from: DateTime.now - 1, to: DateTime.now, format: :time) }
     owner { Faker::String.random(length: 10) }

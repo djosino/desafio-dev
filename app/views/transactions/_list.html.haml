@@ -1,6 +1,14 @@
 
 %h3 Transações
 
+= form_tag nil, method: :get do
+  = select_tag :store, options_for_select(transactions.unscoped.distinct.pluck(:store).sort,
+                                          params[:store]),
+                       { include_blank: true }
+  = submit_tag 'Filtrar'
+
+%br
+
 %table
   %thead
     %tr
@@ -21,3 +29,8 @@
         %td= transaction.credit_card
         %td= transaction.owner
         %td= transaction.store
+  - if params[:store].present?
+    %tfoot
+      %tr
+        %td{colspan: 3} Saldo em Conta
+        %td{colspan: 99}= number_to_currency(transactions.total_value)

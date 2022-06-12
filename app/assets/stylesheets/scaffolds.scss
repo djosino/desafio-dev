@@ -1,5 +1,5 @@
 body {
-  background-color: #fff;
+  background-color: #f5f5f5;
   color: #333;
   margin: 33px; }
 
@@ -66,7 +66,9 @@ label {
 
 table {
   width: 100%;
-  padding: 2px 10px;
+}
+td, th {
+  padding: 5px 10px;
 }
 
 table tr td,
