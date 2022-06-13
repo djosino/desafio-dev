@@ -76,3 +76,8 @@ Executando sidekiq
 --------------------
 
     sidekiq -C config/sidekiq.yml
+
+API DOC
+--------------------
+
+    https://documenter.getpostman.com/view/3052546/Uz5Njt9M
